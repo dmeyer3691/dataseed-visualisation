@@ -1,0 +1,86 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Dataseed Interactive Data Visualization</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="src/less/dataseed.less" rel="stylesheet/less" type="text/css" />
+    <script src="src/js/components/less/dist/less-1.7.5.js"></script>
+  </head>
+  <body>
+    <button id="start">Show me the visualisation!</button>
+    <div id="vis"></div>
+    <script src="dist/js/dataseed.js"></script>
+    <script src="src/js/components/requirejs/require.js"></script>
+    <script>
+      require.config({
+       "config": {
+           "models/datasetSingleton": {
+               "DATASET": {
+                   "id": "mortality",
+                   "label": "Mortality",
+                   "public": true,
+                   "imports": [],
+                   "fields": [
+                        {"id": "year", "label": "Year", "type": "string"},
+                        {"id": "gender", "label": "Gender", "type": "string"},
+                        {"id": "value", "label": "Value", "type": "integer"}
+                    ],
+                    "visualisations": [
+                        {
+                            "id": "1",
+                            "label": "Mortality in England and Wales",
+                            "description": "Explore and compare the number of deaths by disease, sex, area and year",
+                            "elements": [
+                                {
+                                    "id": "year",
+                                    "label": "Year",
+                                    "measure_label": "Number of deaths",
+                                    "type": "bar",
+                                    "aggregation": "sum",
+                                    "measure": {"id": "value"},
+                                    "dimensions": [{"field": {"id": "year", "type": "string"}}],
+                                    "width": 1,
+                                    "height": 6,
+                                    "y": 1,
+                                    "x": 1
+                                },
+                                {
+                                    "id": "gender",
+                                    "label": "Gender",
+                                    "measure_label": "Number of deaths",
+                                    "type": "bar",
+                                    "aggregation": "sum",
+                                    "measure": {"id": "value"},
+                                    "dimensions": [{"field": {"id": "gender", "type": "string"}}],
+                                    "width": 1,
+                                    "height": 6,
+                                    "y": 1,
+                                    "x": 2
+                                }
+                            ],
+                            "styles": []
+                        }
+                    ],
+                    "modified": "2013-09-06T10:33:39.789859",
+                    "created": "2013-09-06T10:33:39.789859"
+                } // end "DATASET"
+            }
+        } // end "config"
+    });
+
+    //require(['src/js/config'], function() {
+        require(['jquery', './views/dataset', 'app'], function($, DatasetEmbedView) {
+            $('#start').click(function() {
+                new DatasetEmbedView({
+                    'el': $('#vis'),
+                    'id': 'mortality',
+                    'visualisation_id': '1'
+                });
+            });
+        });
+    //});
+    </script>
+  </body>
+</html>

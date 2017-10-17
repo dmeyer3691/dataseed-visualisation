@@ -1,0 +1,29 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Dataseed Interactive Data Visualization</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="src/less/dataseed.less" rel="stylesheet/less" type="text/css" />
+    <script src="src/js/components/less/dist/less-1.7.5.js"></script>
+  </head>
+  <body>
+    <button id="start">Show me the visualisation!</button>
+    <div id="vis"></div>
+    <script src="src/js/components/requirejs/require.js"></script>
+    <script>
+        require(['src/js/config'], function() {
+            require(['jquery', './views/dataset', 'app'], function($, DatasetEmbedView) {
+                $('#start').click(function() {
+                    new DatasetEmbedView({
+                        'el': $('#vis'),
+                        'id': '601f5572f73d72b9c033e8b594e2025d',
+                        'visualisation_id': '1'
+                    });
+                });
+              });
+        });
+    </script>
+  </body>
+</html>

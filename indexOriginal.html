@@ -1,0 +1,23 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Dataseed Interactive Data Visualization</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="dist/css/dataseed.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="page"></div>
+    <script src="dist/js/dataseed.js"></script>
+    <script>
+        require(['./views/dataset'], function(DatasetEmbedView) {
+            new DatasetEmbedView({
+                'el': document.getElementById('page'),
+                'id': '601f5572f73d72b9c033e8b594e2025d',
+                'visualisation_id': '1'
+            });
+        });
+    </script>
+</body>
+</html>
